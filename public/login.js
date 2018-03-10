@@ -21,7 +21,8 @@ function login(){
 					    if(this.readyState == 4 && this.status == 201){
 
 					      let token = this.responseText;	
-					      console.log(token.data);				      
+					      console.log(token);
+					      console.log(typeof(token));				      
 					      window.localStorage.setItem('access_token',token.data);
 					      // redirectToTaskPage();
 					    
