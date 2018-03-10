@@ -43,8 +43,7 @@ module.exports.userLogin = function(req,res){
 														  }, //payload
 														 's3cr3t', //secret
 														 {expiresIn: 3600}
-														 );	
-									console.log(token);				
+														 );												
 									res
 										.status(201)
 										.json({data : token });
@@ -108,7 +107,7 @@ module.exports.authenticate = function(req,res,next){
 			}
 		});
 	}else{
-		
+
 		res.status(403).json('No token provided');
 	}
 };

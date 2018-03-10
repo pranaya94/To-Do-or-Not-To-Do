@@ -1,12 +1,50 @@
 body {
   background-color: #ff4f46;
+  font-family: "Open Sans",arial,x-locale-body,sans-serif;
 }
 
-.container {
+#banner {
+  display : flex;
+  align-items: center;
+  background-color : #222;
+  position : fixed;
+  width : 100%;
+  color : #83d0f2;
+  z-index: 2;
+}
+
+#logo{
+  width : 80%;
+  display : inline-block;
+  text-align: center;
+}
+
+#logo h1 span{
+  position: relative;
+  left : 110px;
+}
+
+#navlist{
+  display : inline-block;
+  width : 10%;
+  list-style: none;
+}
+
+#navlist li{
+  float : right;
+  margin-left : 10px;
+  margin-right: 10px;
+}
+
+
+.container {  
+  position: relative;
+  top : 100px;
   box-sizing: border-box;
   width : 40%;
   margin : auto;
   border : none;
+
 }
 
 ul.todo {

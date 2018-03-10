@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 
 var routes = require('./api/routes');
 
-// app.set('port', 3000);
 app.set('port', (process.env.PORT || 3000));
 
 //set static directory before defining routes

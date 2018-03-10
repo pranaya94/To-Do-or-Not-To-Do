@@ -1,6 +1,3 @@
- 
-// var addButton = document.getElementById('add');
-// addButton.addEventListener('click',addTask);
 
 var tasks = [];
 
@@ -56,8 +53,8 @@ function renderTasks(tasks){
 
 
 function postTaskToServer(callback){
-  let taskData = document.querySelectorAll('header input')["0"].value; //get first element in nodelist
-  document.querySelectorAll('header input')["0"].value = "";
+  let taskData = document.getElementById('input').value; //get first element in nodelist
+  document.getElementById('input').value = "";
   let timestamp = Date.now();
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
@@ -85,6 +82,12 @@ function addTask(taskdata,taskid){
 var submitBtn = document.getElementById("add");
 submitBtn.addEventListener('click',function(){
   postTaskToServer(addTask);
+});
+
+document.getElementById('input').addEventListener('keydown',function(e){
+  if(e.code == 'Enter'){
+    postTaskToServer(addTask);
+  }
 });
 
 function deleteTask(taskid){  
