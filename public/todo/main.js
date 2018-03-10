@@ -62,7 +62,7 @@ function postTaskToServer(callback){
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
     if(this.readyState == 4 && this.status == 201){
-      taskid = this.responseText;
+      taskid = JSON.parse(this.responseText)['taskid'];
       callback(taskData,taskid,timestamp);
     }
   }

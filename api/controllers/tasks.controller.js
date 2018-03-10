@@ -10,50 +10,58 @@ var pool = new pg.Pool(config);
 module.exports.getAllTasks = function(req,res){
 
 		pool.connect(function(pgerr,client,done){
+
 				if(pgerr){
-					console.log("error fetching client from pool " + pgerr);
-				}
-				else{
+
+					res
+						.status(500)
+						.json("Error getting pg client from pool");
+
+				}else{
+
 					client.query("SELECT * FROM tasks WHERE userid = '" + req.userid.trim() + "'",(err,data) => {	
+
 								done(); //release client back to pool
 								if(err){
-									res.statusCode = 400;
-									res.setHeader('Content-Type', 'application/json');
-									res.end(JSON.stringify(err));
-									console.log("Error getting tasks : " + err);
+
+									res
+										.status(400);
+										.json(err);									
 								}else{
-								res.statusCode = 200;
-								res.setHeader('Content-Type', 'application/json');
-								res.end(JSON.stringify(data.rows));										
+									res
+										.status(200)
+										.json(data.rows);										
 								}
 							});
 				}
 			});
-
 };
 
 module.exports.addTask = function(req,res){
-		console.log(req.body.taskData);
+
 		let taskid = "t_" + shortid.generate();
 		pool.connect(function(pgerr,client,done){
 			
 			if(pgerr){
-			
-				console.log("error getting client from pool");
+
+					res
+						.status(500)
+						.json("Error getting pg client from pool");
 			}else{
 			
 				client.query("INSERT INTO tasks(taskid,taskdata,userid,timestamp) VALUES( '" + taskid + "','" + req.body.taskData + "','" + req.userid + "','" + req.body.timestamp + "')",(err,result) => {
+						
 						done();
 						if(err){
-							console.log("error inserting task");
-							res.statusCode = 400;
-							res.setHeader('Content-Type', 'application/json');
-						    res.end(JSON.stringify(err));							
+
+							res
+								.status(400)
+								.json(err);
 						}else{
-						res.statusCode = 201;
-						res.setHeader('Content-Type', 'application/json');
-						res.end(taskid); //return to frontend to be used as id for li element
-						console.log("task inserted");
+
+							res
+								.status(201)
+								.json({ taskid : taskid});						
 						}
 				});
 			}

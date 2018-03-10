@@ -100,13 +100,15 @@ module.exports.authenticate = function(req,res,next){
 		
 				res
 					.status(401)
-					.send('Unauthorized');
+					.json('Unauthorized');
 			}else{
+
 				req.userid = decoded.userid;
 				next();
 			}
 		});
 	}else{
+		
 		res.status(403).json('No token provided');
 	}
 };
