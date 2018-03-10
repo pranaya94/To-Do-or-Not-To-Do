@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/style.css">
+	<title>Login</title>
+</head>
+<body>
+
+	<div class="container">
+	<form>
+	<div class = "card card-body">
+
+
+		<div class = "form-group">
+			<label>Email :</label>
+			<input type = "email" class = "form-control" name = "email" id = "email" required>
+		</div>
+		<div class = "form-group">
+			<label>Password :</label>
+			<input type = "password" class = "form-control" name = "password" id = "password" required>
+		</div>
+		
+			<input type = "button" onclick = "login()" class = "btn btn-success" value = "submit" id = "sub"></input>
+		</div>
+
+	</form>
+	<div><a href="../register/register.html">New user? Register here.</a></div>
+    </div>
+	
+	<script src="/login.js"></script>
+</body>
+</html>

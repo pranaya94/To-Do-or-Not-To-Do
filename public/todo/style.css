@@ -1,0 +1,59 @@
+body {
+  background-color: #ff4f46;
+}
+
+.container {
+  box-sizing: border-box;
+  width : 40%;
+  margin : auto;
+  border : none;
+}
+
+ul.todo {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul.todo li{
+  box-sizing: border-box;
+  list-style: none;
+  margin-top : 10px;
+  margin-bottom : 10px;
+  border : none;
+  border-radius: 5px;
+  padding : 20px 100px 20px 20px;
+  background-color: white;
+  font-weight: 500;
+  box-shadow: 1px 1px 3px 2px rgba(100,100,100,0.7);
+}
+
+ul.todo li i.delete{
+  position: relative;
+  float : right;
+}
+
+header{
+  padding-top : 10px;
+  padding-bottom : 10px;
+  height : 50px;
+}
+
+header input{
+  box-sizing: border-box;
+ display : inline-block;
+ border-radius: 5px;
+ border-style: none;
+ width : 90%;
+ height : 50px;
+ padding-top : 5px;
+ padding-left : 20px;
+ padding-right: 20px;
+}
+
+header button#add{
+  width : 10%;
+  height: 100%;
+  border-radius : 5px;
+  border-style: none;
+}
