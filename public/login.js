@@ -20,7 +20,7 @@ function login(){
 
 					    if(this.readyState == 4 && this.status == 201){
 
-					      let token = this.responseText;	
+					      let token = this.responseText.data;	
 					      console.log("setting token : " + token);				      
 					      window.localStorage.setItem('access_token',token);
 					      redirectToTaskPage();
