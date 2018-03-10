@@ -74,14 +74,12 @@ module.exports.userRegister = function(req,res){
 
 					res
 						.status(400)
-						.send("User already exists");
-					// res.statusCode = 400;
-					// res.setHeader('Content-Type', 'application/json');
-					// res.end('{"Error" : "Error inserting values"}');
-					// console.log("error inserting values : " + err);
+						.json("User already exists");
 				}else{
-				res.writeHead(201,{success : true}); //redirect to login
-				res.end();				
+
+				res
+					.status(200)
+					.end();				
 				}
 			});
 
@@ -90,14 +88,19 @@ module.exports.userRegister = function(req,res){
 
 
 module.exports.authenticate = function(req,res,next){
+
 	var headerExists = req.headers.authorization;
 	if(headerExists){
+
 		var token = req.headers.authorization.split(' ')[1];
 		console.log(token);
 		jwt.verify(token,'s3cr3t',function(error,decoded){
+
 			if(error){
-				console.log(error);
-				res.status(401).json('Unauthorized');
+		
+				res
+					.status(401)
+					.send('Unauthorized');
 			}else{
 				req.userid = decoded.userid;
 				next();
