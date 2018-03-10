@@ -47,7 +47,7 @@ module.exports.userLogin = function(req,res){
 									console.log(token);				
 									res
 										.status(201)
-										.send(token);
+										.json(token);
 
 								}else{
 
