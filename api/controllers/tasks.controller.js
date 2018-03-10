@@ -72,30 +72,29 @@ module.exports.addTask = function(req,res){
 module.exports.deleteTask = function(req,res){
 
 	let taskid = req.params.taskid;
-
-	// var token = req.headers.authorization.split(' ')[1];
-	// var decoded = jwt.decode(token,{complete: true});
-	// var email = decoded.payload.email;
-	// var name = decoded.payload.username;
-	// var userid = decoded.payload.userid;
-
 	pool.connect(function(pgerr,client,done){
 
 			if(pgerr){
 
-				console.log("error getting client from pool");
+				res
+					.status(500)
+					.json("Error getting pg client from pool");
+
 			}else{
 				
 						client.query("DELETE FROM tasks WHERE userid = '" + req.userid + "' AND taskid = '" + taskid + "'",(err,result) => {
+				
 						done();
 						if(err){
-							console.log("error deleting task");			
-							res.statusCode = 400;
-							res.setHeader('Content-Type','application/json');
-							res.end(JSON.stringify(err));
-						}else{							
-							res.statusCode = 200;
-							res.end();
+
+							res
+								.status(400)
+								.json(err);
+						}else{
+
+							res
+								.status(201)
+								.end();						
 						}
 				});		
 
