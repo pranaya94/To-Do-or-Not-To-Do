@@ -111,3 +111,10 @@ function deleteTaskFromServer(taskid){
   xhttp.send();
 }
 
+
+let logout = document.getElementById('logout');
+logout.addEventListener('click',function(){
+  window.localStorage.clear();
+  window.sessionStorage.clear();
+  window.location = '/'; 
+});

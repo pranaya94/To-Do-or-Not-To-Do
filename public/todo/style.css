@@ -3,6 +3,11 @@ body {
   font-family: "Open Sans",arial,x-locale-body,sans-serif;
 }
 
+li a{
+  text-decoration: none;  
+  color : #83d0f2;
+}
+
 #banner {
   display : flex;
   align-items: center;
@@ -72,13 +77,14 @@ ul.todo li i.delete{
 }
 
 header{
+  display : flex;
   padding-top : 10px;
   padding-bottom : 10px;
   height : 50px;
 }
 
 header input{
-  box-sizing: border-box;
+ box-sizing: border-box;
  display : inline-block;
  border-radius: 5px;
  border-style: none;
@@ -89,9 +95,8 @@ header input{
  padding-right: 20px;
 }
 
-header button#add{
-  width : 10%;
-  height: 100%;
-  border-radius : 5px;
-  border-style: none;
+#add{
+font-size: 50px;
+margin-left: 20px;
 }
+
