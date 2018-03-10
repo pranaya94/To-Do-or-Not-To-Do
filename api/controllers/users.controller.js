@@ -77,7 +77,7 @@ module.exports.userRegister = function(req,res){
 				}else{
 
 				res
-					.status(200)
+					.status(201)
 					.end();				
 				}
 			});
