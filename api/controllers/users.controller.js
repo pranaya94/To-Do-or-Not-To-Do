@@ -74,10 +74,10 @@ module.exports.userRegister = function(req,res){
 
 					res
 						.status(400)
-						.send("User already exists");
+						// .send("User already exists");
 					// res.statusCode = 400;
-					// res.setHeader('Content-Type', 'application/json');
-					// res.end('{"Error" : "Error inserting values"}');
+					res.setHeader('Content-Type', 'application/json');
+					res.end('{"Error" : "Error inserting values"}');
 					// console.log("error inserting values : " + err);
 				}else{
 				res.writeHead(201,{success : true}); //redirect to login
