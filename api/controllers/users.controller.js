@@ -9,32 +9,33 @@ const config = require('./db.js');
 var pool = new pg.Pool(config);
 
 module.exports.userLogin = function(req,res){	
-		
-			console.log("requerst aya");			
+					
 			pool.connect(function(pgerr,client,done){
-					if(pgerr){
-						console.log("error fetching client from pool");
 
+					if(pgerr){
+						
+						res
+							.status(500)
+							.send("500 : Error fetching pg client from pool");
 					}else{
+
 						client.query("SELECT password, name, userid from users where email = '" + req.body.email + "'",(err,result) => {
+
 						done();
 						if(err){
-							console.log("Login internal server error");
-							console.log(err);
+														
 							res
-								.status(401)
-								.send("Login inernal server error");
-
+								.status(500)
+								.send("500 : Database error at login");
 						}else if(result.rows.length == 0){
 
 							res
 								.status(404)
-								.send("user not found");
+								.send("404 : User not found");
 						}else{
 					
-							if(bcrypt.compareSync(req.body.password,result.rows[0]["password"].trim()))
-								{
-									console.log("passwords match");									
+							if(bcrypt.compareSync(req.body.password,result.rows[0]["password"].trim())){
+																	
 									var token = jwt.sign({
 														  username: result.rows[0]["name"].trim(),
 														  userid : result.rows[0]["userid"].trim(),
@@ -48,15 +49,13 @@ module.exports.userLogin = function(req,res){
 										.status(201)
 										.send(token);
 
-								}
-							else{
+								}else{
+
 									res
 										.status(400)
-										.send("Wrong password");
-
-									console.log("passwords don't match");
-							}
-						}
+										.send("Wrong password");									
+									}
+							}	
 				
 				});	
 			}		
@@ -68,13 +67,18 @@ module.exports.userRegister = function(req,res){
 			let userId = shortid.generate();
 		
 			pool.connect(function(pgerr,client,done){
+
 				client.query("INSERT into users(name,email,password,userid) values('" + req.body.name + "','" + req.body.email + "','" + bcrypt.hashSync(req.body.password,bcrypt.genSaltSync(10)) + "','" + userId + "')" ,(err,data) => {	
 				done();
 				if(err){
-					res.statusCode = 400;
-					res.setHeader('Content-Type', 'application/json');
-					res.end('{"Error" : "Error inserting values"}');
-					console.log("error inserting values : " + err);
+
+					res
+						.status(400)
+						.send("User already exists");
+					// res.statusCode = 400;
+					// res.setHeader('Content-Type', 'application/json');
+					// res.end('{"Error" : "Error inserting values"}');
+					// console.log("error inserting values : " + err);
 				}else{
 				res.writeHead(201,{success : true}); //redirect to login
 				res.end();				

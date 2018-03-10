@@ -22,3 +22,5 @@
 	  database: params.pathname.split('/')[1],
 	  ssl: true
 	};
+
+13. best is to link app to github repo
