@@ -5,17 +5,24 @@ function register(){
 	let password = document.getElementById("password").value;
 	let repeatPassword = document.getElementById("re_password").value;
 
+	if(password !== repeatPassword){
+		alert("Passwords don't match");
+		return;
+	}	
+
+	let emailRegEx = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+	if(!emailRegEx.test(email)){
+
+		alert("enter valid email");
+		return;
+	} 
+
 	let formData = {
 		name : name,
 		email : email,
 		password : password
 	};
-
-	if(password !== repeatPassword){
-		alert("Passwords don't match");
-		return;
-	}
-
 
 	function postFormToServer(){
 	

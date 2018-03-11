@@ -9,9 +9,9 @@ function login(){
 
 
 			function postFormToServer(redirectToTaskPage){
+
 					  console.log("ajax call to post login form");
 					  let xhttp = new XMLHttpRequest();
-					
 					   xhttp.open('POST','/api/login',true);
 					   xhttp.setRequestHeader("Content-type","application/json");
 					   xhttp.send(JSON.stringify(formData));
@@ -38,7 +38,8 @@ function login(){
 
 			}
 
-			function redirectToTaskPage(){						
+			function redirectToTaskPage(){	
+
 						console.log("redirecting to task page");
 						window.location = './todo/todo.html';	
 						return;					
