@@ -6,8 +6,6 @@ function login(){
 			email : email_text,
 			password : password_text
 	};
-
-
 			function postFormToServer(redirectToTaskPage){
 
 					  console.log("ajax call to post login form");
