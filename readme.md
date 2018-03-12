@@ -1,2 +1,3 @@
-"A to-do list app" 
-"# To Do App linked to Heroku" 
+To Do App linked to Heroku
+
+(to-do-or-not-to-do.herokuapp.com)
